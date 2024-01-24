@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import {Bio} from "../../data/constants"
 import Typewriter from "typewriter-effect"
+import Heroimage from "../../Images/Heroimg.jpeg"
+import HeroBgAnimation from "../HeroBgAnimation"
 
 const HeroContainer=styled.div`
 background-color:${({theme})=>theme.card_light};
@@ -27,14 +29,34 @@ clip-path: polygon(0 0 , 100% 0,100% 100%,70% 95%,0 100%);
  bottom:0;
  left:50%;
  overflow:hidden;
- width:100%;
+ width:82%;
  height:100%;
+ @media screen and (max-width:1400px){
+    
+    width:100%;
+    height:100%;
+    
+ }
+ @media screen and (max-width:768px){
+  
+    width:60%;
+    height:100%;
+ }
+ @media screen and (max-width:960px){
+    width:70%;
+    height:100%;
+ }
  padding:0 30px;
  -webkit-transform: translateX(-50%) translateY(-50%);
  transform:translateX(-50%) translateY(50%)
+ 
  @media screen and (max-width:960px){
+    width:10%;
+    height:100%;
     padding:0 0px;
     justify-content:center
+                                                                                            
+   
  }`;
 const HeroInnerContainer=styled.div`
 display:flex;
@@ -50,12 +72,14 @@ max-width:1100px;
 const HeroLeftContainer=styled.div`
 width:100%;
 order:1;
+
 @media screen and (max-width:960px){
     order:2;
     margin-bottom:32px;
     display:flex;
     align-items:center;
     flex-direction:column;
+    
 
 }
 @media screen and (max-width:640px){
@@ -166,11 +190,38 @@ box-shadow:20px 20px 60px #1F2634,
 }
 `;
 
+const Image=styled.img`
+width:70%;
+height:70%;
+position:relative;
+border-radius:50%;
+max-width:400px;
+max-height:400px;
+objecct-fit:cover;
+obejct-position:center;
+border:2px solid ${({theme})=>theme.primary};
+
+@media screen and (max-screen:960px){
+    max-width:400px;
+    max-height:400px;
+}
+@media screen and (max-screen:768px){
+    max-width:800px;
+    max-height:800px;   
+}
+@media screen and (max-screen:640px){
+    max-width::280px;
+    max-height:280px;   
+}`;
+
+
 const   Hero=()=>{
     return (
      <div id="about">
         <HeroContainer>
-            <HeroBg></HeroBg>
+            <HeroBg>
+                <HeroBgAnimation/>
+            </HeroBg>
             <HeroInnerContainer>
                 <HeroLeftContainer>
                     <Title>Hi, I am <br/>{Bio.name}</Title>
@@ -188,7 +239,9 @@ const   Hero=()=>{
                     <SubTitle>{Bio.description}</SubTitle>
                     <ResumeButton href={Bio.resume} target="_blank">Check Resume</ResumeButton>
                 </HeroLeftContainer>
-                <HeroRightContainer></HeroRightContainer>
+                <HeroRightContainer>
+                    <Image src={Heroimage} alt="Hero"/>
+                </HeroRightContainer>
             </HeroInnerContainer>
         </HeroContainer>
      </div>
